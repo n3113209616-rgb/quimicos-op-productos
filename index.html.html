@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quimicos OP - Productos de Calidad Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff00ff;
+            --dark-bg: #0a0a0a;
+            --dark-card: #111111;
+            --light-text: #f0f0f0;
+            --gray-text: #cccccc;
+            --transition: all 0.3s ease;
+            --glow: 0 0 10px, 0 0 20px, 0 0 30px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            z-index: 100;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--neon-cyan);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        nav a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-highlight {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray-text);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: var(--glow) var(--neon-green);
+        }
+        
+        .cta-button.secondary {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: var(--neon-pink);
+            color: var(--dark-bg);
+            box-shadow: var(--glow) var(--neon-pink);
+        }
+        
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        .products {
+            padding: 80px 0;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .product-card {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(57, 255, 20, 0.1);
+            border-color: rgba(57, 255, 20, 0.3);
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--neon-pink);
+            color: var(--dark-bg);
+            padding: 5px 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 3px;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--neon-cyan);
+        }
+        
+        .product-description {
+            color: var(--gray-text);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-features i {
+            color: var(--neon-green);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .video-container {
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .video-overlay:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .play-button {
+            color: white;
+            font-size: 3rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            transition: var(--transition);
+        }
+        
+        .video-overlay:hover .play-button {
+            transform: scale(1.1);
+            color: var(--neon-cyan);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark-card);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+        
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .map-container {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            height: 300px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-card);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(57, 255, 20, 0.1);
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .copyright {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+        
+        /* Modal para videos */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+        
+        .modal-video {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--neon-pink);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .mobile-menu ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">QUIMICOS <span>OP</span></div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="desktop-menu">
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                
+                <nav class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Productos de <span class="hero-highlight">calidad profesional</span> para el cuidado y limpieza</h1>
+            <p>En Quimicos OP desarrollamos fórmulas innovadoras con ingredientes naturales que ofrecen resultados excepcionales para el cuidado personal y del hogar.</p>
+            <div>
+                <a href="#productos" class="cta-button">Ver Productos</a>
+                <a href="#contacto" class="cta-button secondary">Contactar Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            
+            <div class="products-grid">
+                <!-- Producto 1: Champú de Guácimo -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge">MÁS VENDIDO</div>
+                        <img src="champu-de-guacimo.png" alt="Champú de Guácimo">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Champú de Guácimo</h3>
+                        <p class="product-description">Nutre y embellece el cabello, evitando su caída y caspa gracias a sus propiedades naturales.</p>
+                        
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> Con mucílago de semillas de guácimo</li>
+                            <li><i class="fas fa-check"></i> Enriquecido con eucalipto y manzanilla</li>
+                            <li><i class="fas fa-check"></i> Contiene aceite de pepa de aguacate</li>
+                            <li><i class="fas fa-check"></i> Fortificado con vitamina E</li>
+                            <li><i class="fas fa-check"></i> Ingredientes 100% naturales</li>
+                        </ul>
+                        
+                        <div class="video-container">
+                            <div class="video-overlay" data-video="video-champu">
+                                <i class="fas fa-play-circle play-button"></i>
+                            </div>
+                            <video id="video-champu" style="display:none;">
+                                <source src="video-champu.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2: Moto Wax -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge">PROTECCIÓN TOTAL</div>
+                        <img src="moto-wax.png" alt="Moto Wax">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Moto Wax</h3>
+                        <p class="product-description">Brillo duradero, limpieza contra el polvo y protección de los rayos del sol para tu vehículo.</p>
+                        
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> Brillo intenso y duradero</li>
+                            <li><i class="fas fa-check"></i> Protege contra rayos UV</li>
+                            <li><i class="fas fa-check"></i> Repele el polvo y suciedad</li>
+                            <li><i class="fas fa-check"></i> Fácil aplicación</li>
+                            <li><i class="fas fa-check"></i> Resultados profesionales</li>
+                        </ul>
+                        
+                        <div class="video-container">
+                            <div class="video-overlay" data-video="video-moto-wax">
+                                <i class="fas fa-play-circle play-button"></i>
+                            </div>
+                            <video id="video-moto-wax" style="display:none;">
+                                <source src="video-moto-wax.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3: Desmanchador -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="product-badge">LIMPIEZA PROFUNDA</div>
+                        <img src="desmanchador.png" alt="Desmanchador">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Desmanchador Profesional</h3>
+                        <p class="product-description">Efectivo para la limpieza del hogar, juntas de baños, pisos y loza sanitaria con excelentes resultados.</p>
+                        
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> Elimina manchas difíciles</li>
+                            <li><i class="fas fa-check"></i> Ideal para juntas de baños</li>
+                            <li><i class="fas fa-check"></i> Limpia loza sanitaria</li>
+                            <li><i class="fas fa-check"></i> Eficaz en pisos</li>
+                            <li><i class="fas fa-check"></i> Resultados visibles al instante</li>
+                        </ul>
+                        
+                        <div class="video-container">
+                            <div class="video-overlay" data-video="video-desmanchador">
+                                <i class="fas fa-play-circle play-button"></i>
+                            </div>
+                            <video id="video-desmanchador" style="display:none;">
+                                <source src="video-desmanchador.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Dirección</h3>
+                        <p>Calle 7 # 14-69, Pradera Valle<br>Barrio Antonio Ricaurte</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Teléfono / WhatsApp</h3>
+                        <p>311 320 9616</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/573113209616?text=Hola%20Quimicos%20OP,%20me%20interesan%20sus%20productos" class="whatsapp-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+            </a>
+            
+           
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">QUIMICOS OP</div>
+            <p class="copyright">© 2023 Quimicos OP. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para videos -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <video class="modal-video" controls id="modalVideo">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        // Navegación móvil
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Cerrar menú móvil al hacer clic en un enlace
+        const mobileLinks = document.querySelectorAll('.mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Funcionalidad del modal de videos
+        const videoOverlays = document.querySelectorAll('.video-overlay');
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const closeModal = document.getElementById('closeModal');
+        
+        videoOverlays.forEach(overlay => {
+            overlay.addEventListener('click', () => {
+                const videoId = overlay.getAttribute('data-video');
+                const videoElement = document.getElementById(videoId);
+                const videoSource = videoElement.querySelector('source').src;
+                
+                modalVideo.src = videoSource;
+                videoModal.style.display = 'flex';
+                modalVideo.play();
+            });
+        });
+        
+        // Cerrar modal
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        });
+        
+        // Cerrar modal al hacer clic fuera del video
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
+        });
+        
+        // Smooth scrolling para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de aparición gradual al hacer scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Aplicar efectos a las tarjetas de productos
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
